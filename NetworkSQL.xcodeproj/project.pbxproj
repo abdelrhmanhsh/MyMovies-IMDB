@@ -10,6 +10,8 @@
 		2F02FE95568365E5AD78FDBC /* Pods_NetworkSQL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3D3C208009426E8EFFD08C1 /* Pods_NetworkSQL.framework */; };
 		39B275698518F775F6EA5F3A /* Pods_NetworkSQL_NetworkSQLUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D6848B644C8D33A1574508D /* Pods_NetworkSQL_NetworkSQLUITests.framework */; };
 		47130B1CB1553FD9FFD75DE1 /* Pods_NetworkSQLTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D86DB457555D41AA29C0C036 /* Pods_NetworkSQLTests.framework */; };
+		BC31215D2815E7AB00FAA03B /* MovieResponse+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC31215B2815E7AB00FAA03B /* MovieResponse+CoreDataClass.swift */; };
+		BC3121602815E9BD00FAA03B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC31215F2815E9BD00FAA03B /* Movie.swift */; };
 		BCC4336A28117D1D006447E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4336928117D1D006447E1 /* AppDelegate.swift */; };
 		BCC4336C28117D1D006447E1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4336B28117D1D006447E1 /* SceneDelegate.swift */; };
 		BCC4336E28117D1D006447E1 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4336D28117D1D006447E1 /* DetailsViewController.swift */; };
@@ -21,13 +23,8 @@
 		BCC4338D28117D1F006447E1 /* NetworkSQLUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4338C28117D1F006447E1 /* NetworkSQLUITestsLaunchTests.swift */; };
 		BCC4339A28117D3F006447E1 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4339928117D3F006447E1 /* TableViewController.swift */; };
 		BCC4339C28117D6E006447E1 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4339B28117D6E006447E1 /* Response.swift */; };
-		BCC4339E28117D76006447E1 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4339D28117D76006447E1 /* Movie.swift */; };
 		BCC433A028117DA4006447E1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC4339F28117DA4006447E1 /* NetworkManager.swift */; };
-		BCC433A62811898F006447E1 /* AddMovieProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC433A52811898F006447E1 /* AddMovieProtocol.swift */; };
-		BCC433A828118C72006447E1 /* DeleteMovieProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC433A728118C72006447E1 /* DeleteMovieProtocol.swift */; };
-		BCC433AC28118CD0006447E1 /* TableViewControllerExtension_AddMovieDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC433AB28118CD0006447E1 /* TableViewControllerExtension_AddMovieDelegate.swift */; };
-		BCC433AE28118CEC006447E1 /* TableViewControllerExtension_DeleteMovieDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC433AD28118CEC006447E1 /* TableViewControllerExtension_DeleteMovieDelegate.swift */; };
-		BCC433B028118D29006447E1 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCC433AF28118D29006447E1 /* DBManager.swift */; };
+		BCC6CF3D2815E0B2001257E1 /* NetworkSQL.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCC6CF3B2815E0B2001257E1 /* NetworkSQL.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +50,8 @@
 		3D6848B644C8D33A1574508D /* Pods_NetworkSQL_NetworkSQLUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkSQL_NetworkSQLUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4964032E0FAFDE28399B7512 /* Pods-NetworkSQLTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkSQLTests.release.xcconfig"; path = "Target Support Files/Pods-NetworkSQLTests/Pods-NetworkSQLTests.release.xcconfig"; sourceTree = "<group>"; };
 		7C3024DA133D94F8E82D175A /* Pods-NetworkSQL.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkSQL.release.xcconfig"; path = "Target Support Files/Pods-NetworkSQL/Pods-NetworkSQL.release.xcconfig"; sourceTree = "<group>"; };
+		BC31215B2815E7AB00FAA03B /* MovieResponse+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieResponse+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BC31215F2815E9BD00FAA03B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BCC4336628117D1D006447E1 /* NetworkSQL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NetworkSQL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCC4336928117D1D006447E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCC4336B28117D1D006447E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,13 +67,8 @@
 		BCC4338C28117D1F006447E1 /* NetworkSQLUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSQLUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BCC4339928117D3F006447E1 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		BCC4339B28117D6E006447E1 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
-		BCC4339D28117D76006447E1 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		BCC4339F28117DA4006447E1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
-		BCC433A52811898F006447E1 /* AddMovieProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMovieProtocol.swift; sourceTree = "<group>"; };
-		BCC433A728118C72006447E1 /* DeleteMovieProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteMovieProtocol.swift; sourceTree = "<group>"; };
-		BCC433AB28118CD0006447E1 /* TableViewControllerExtension_AddMovieDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerExtension_AddMovieDelegate.swift; sourceTree = "<group>"; };
-		BCC433AD28118CEC006447E1 /* TableViewControllerExtension_DeleteMovieDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerExtension_DeleteMovieDelegate.swift; sourceTree = "<group>"; };
-		BCC433AF28118D29006447E1 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		BCC6CF3C2815E0B2001257E1 /* NetworkSQL.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NetworkSQL.xcdatamodel; sourceTree = "<group>"; };
 		D86DB457555D41AA29C0C036 /* Pods_NetworkSQLTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkSQLTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3CE860F262D11317A96871A /* Pods-NetworkSQL-NetworkSQLUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkSQL-NetworkSQLUITests.debug.xcconfig"; path = "Target Support Files/Pods-NetworkSQL-NetworkSQLUITests/Pods-NetworkSQL-NetworkSQLUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E3D3C208009426E8EFFD08C1 /* Pods_NetworkSQL.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkSQL.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,10 +152,10 @@
 			isa = PBXGroup;
 			children = (
 				BCC433A428117DF9006447E1 /* Network */,
-				BCC433A328117DEF006447E1 /* DB */,
 				BCC433A228117DD2006447E1 /* Model */,
 				BCC433A128117DC1006447E1 /* Views */,
 				BCC4336928117D1D006447E1 /* AppDelegate.swift */,
+				BCC6CF3B2815E0B2001257E1 /* NetworkSQL.xcdatamodeld */,
 				BCC4336B28117D1D006447E1 /* SceneDelegate.swift */,
 				BCC4336F28117D1D006447E1 /* Main.storyboard */,
 				BCC4337228117D1F006447E1 /* Assets.xcassets */,
@@ -200,18 +194,11 @@
 		BCC433A228117DD2006447E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC31215B2815E7AB00FAA03B /* MovieResponse+CoreDataClass.swift */,
 				BCC4339B28117D6E006447E1 /* Response.swift */,
-				BCC4339D28117D76006447E1 /* Movie.swift */,
+				BC31215F2815E9BD00FAA03B /* Movie.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		BCC433A328117DEF006447E1 /* DB */ = {
-			isa = PBXGroup;
-			children = (
-				BCC433AF28118D29006447E1 /* DBManager.swift */,
-			);
-			path = DB;
 			sourceTree = "<group>";
 		};
 		BCC433A428117DF9006447E1 /* Network */ = {
@@ -226,10 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				BCC4339928117D3F006447E1 /* TableViewController.swift */,
-				BCC433A52811898F006447E1 /* AddMovieProtocol.swift */,
-				BCC433A728118C72006447E1 /* DeleteMovieProtocol.swift */,
-				BCC433AB28118CD0006447E1 /* TableViewControllerExtension_AddMovieDelegate.swift */,
-				BCC433AD28118CEC006447E1 /* TableViewControllerExtension_DeleteMovieDelegate.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -481,18 +464,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC3121602815E9BD00FAA03B /* Movie.swift in Sources */,
 				BCC4336E28117D1D006447E1 /* DetailsViewController.swift in Sources */,
-				BCC433AE28118CEC006447E1 /* TableViewControllerExtension_DeleteMovieDelegate.swift in Sources */,
-				BCC433A828118C72006447E1 /* DeleteMovieProtocol.swift in Sources */,
 				BCC4336A28117D1D006447E1 /* AppDelegate.swift in Sources */,
-				BCC4339E28117D76006447E1 /* Movie.swift in Sources */,
 				BCC433A028117DA4006447E1 /* NetworkManager.swift in Sources */,
-				BCC433A62811898F006447E1 /* AddMovieProtocol.swift in Sources */,
-				BCC433B028118D29006447E1 /* DBManager.swift in Sources */,
 				BCC4336C28117D1D006447E1 /* SceneDelegate.swift in Sources */,
 				BCC4339A28117D3F006447E1 /* TableViewController.swift in Sources */,
 				BCC4339C28117D6E006447E1 /* Response.swift in Sources */,
-				BCC433AC28118CD0006447E1 /* TableViewControllerExtension_AddMovieDelegate.swift in Sources */,
+				BC31215D2815E7AB00FAA03B /* MovieResponse+CoreDataClass.swift in Sources */,
+				BCC6CF3D2815E0B2001257E1 /* NetworkSQL.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +820,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		BCC6CF3B2815E0B2001257E1 /* NetworkSQL.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				BCC6CF3C2815E0B2001257E1 /* NetworkSQL.xcdatamodel */,
+			);
+			currentVersion = BCC6CF3C2815E0B2001257E1 /* NetworkSQL.xcdatamodel */;
+			path = NetworkSQL.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = BCC4335E28117D1D006447E1 /* Project object */;
 }

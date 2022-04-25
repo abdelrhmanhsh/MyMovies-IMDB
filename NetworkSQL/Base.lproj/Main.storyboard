@@ -59,14 +59,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Movie Details" id="iCJ-7U-0Ji">
-                        <barButtonItem key="rightBarButtonItem" title="Delete" id="Yhl-fH-0ke">
-                            <color key="tintColor" systemColor="systemRedColor"/>
-                            <connections>
-                                <action selector="btnDelete:" destination="BYZ-38-t0r" id="iY7-Hc-heX"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Movie Details" id="iCJ-7U-0Ji"/>
                     <connections>
                         <outlet property="gross" destination="Qy0-of-7cT" id="xIX-Rb-56q"/>
                         <outlet property="movieImage" destination="Dx0-IE-o7H" id="Z3J-Ca-wCE"/>
@@ -134,9 +127,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

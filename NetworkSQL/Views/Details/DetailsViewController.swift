@@ -6,11 +6,12 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController {
-
-    var movie: Movie?
-    var tableVCDelegate: DeleteMovieProtocol?
+    
+    var viewContext: NSManagedObjectContext!
+    var movie = NSManagedObject()
     
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
@@ -22,28 +23,24 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let url = URL(string: (movie?.image) ?? "")
+        let title = movie.value(forKey: "title") as! String
+        movieTitle.text = title
+        
+        let movieRank = movie.value(forKey: "rank") as! String
+        rank.text = movieRank
+        
+        let movieWeekend = movie.value(forKey: "weekend") as! String
+        weekend.text = movieWeekend
+        
+        let movieGross = movie.value(forKey: "gross") as! String
+        gross.text = movieGross
+        
+        let movieWeeks = movie.value(forKey: "weeks") as! String
+        weeks.text = movieWeeks
+        
+        let url = URL(string: (movie.value(forKey: "image") as! String))
         movieImage?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder.jpg"), options: nil, completionHandler: nil)
         
-        movieTitle.text = movie?.title
-        rank.text = movie?.rank
-        weekend.text = movie?.weekend
-        gross.text = movie?.gross
-        weeks.text = movie?.weeks
-        
-    }
-    
-    @IBAction func btnDelete(_ sender: UIBarButtonItem) {
-        let alert: UIAlertController = UIAlertController(title: "Are you sure?", message: "You are attempting to delete this movie!", preferredStyle: .alert)
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {
-            action in
-            self.tableVCDelegate?.deleteMovie(id: (self.movie?.id)! as NSString)
-            self.navigationController?.popViewController(animated: true)
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
     }
     
 }

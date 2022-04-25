@@ -7,31 +7,49 @@
 
 import UIKit
 import Kingfisher
+import Network
+import CoreData
 
 class TableViewController: UITableViewController {
 
-    var movieList: [Movie]? = []
+    var movieList: [NSManagedObject] = []
     
-    let obj = DBManager.DBInstance
-    let db: OpaquePointer? = nil
+    var viewContext: NSManagedObjectContext!
+    let indicator = UIActivityIndicatorView(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getMovies()
-    }
-    
-    func getMovies(){
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        viewContext = appDelegate.persistentContainer.viewContext
         
-        let indicator = UIActivityIndicatorView(style: .large)
+        let monitor = NWPathMonitor()
+
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                // Connected
+                print("Internet is available")
+                self.getMoviesFromApi()
+            }
+            else {
+                // Not Connected
+                print("Internet is NOT available")
+                self.getMoviesFromDB()
+            }
+        }
+
+        monitor.start(queue: DispatchQueue.global(qos: .background))
+        
+        
         indicator.center = self.view.center
         self.view.addSubview(indicator)
         
         indicator.startAnimating()
+    }
+    
+    func getMoviesFromApi(){
         
-        let db = obj.openDatabase()
-        obj.createTable(db: db!)
-        obj.deleteAll(db: db!)
+        deleteAllMovies()
         
         fetchResult { [weak self] (result) in
             
@@ -48,18 +66,69 @@ class TableViewController: UITableViewController {
                 movie.weeks = result?.items[i].weeks
                 
                 print(result?.items[i].title ?? "")
-                self?.obj.insert(db: db!, movie: movie)
+                self?.addMovieToDB(movieResponse: movie)
                 
             }
             
-            self?.movieList = self?.obj.query(db: db!)
-            print(self?.movieList?.count ?? 0)
+            self?.getMoviesFromDB()
             
-            DispatchQueue.main.async {
-                indicator.stopAnimating()
-                self?.tableView.reloadData()
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+            
+        }
+        
+    }
+
+    func getMoviesFromDB() -> Int{
+        let fetch = NSFetchRequest<NSManagedObject>(entityName: "MovieResponse")
+        do {
+            movieList = try viewContext.fetch(fetch)
+        } catch {
+            print("Error fetching movies")
+        }
+        DispatchQueue.main.async {
+            self.indicator.stopAnimating()
+            self.tableView.reloadData()
+        }
+        
+        return movieList.count
+    }
+    
+    func addMovieToDB(movieResponse: Movie){
+        let entity = NSEntityDescription.entity(forEntityName: "MovieResponse", in: viewContext)
+        let movie = NSManagedObject(entity: entity!, insertInto: viewContext)
+        
+        movie.setValue(movieResponse.id, forKey: "id")
+        movie.setValue(movieResponse.title, forKey: "title")
+        movie.setValue(movieResponse.image, forKey: "image")
+        movie.setValue(movieResponse.rank, forKey: "rank")
+        movie.setValue(movieResponse.gross, forKey: "gross")
+        movie.setValue(movieResponse.weekend, forKey: "weekend")
+        movie.setValue(movieResponse.title, forKey: "weeks")
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print("Error saving movie")
+        }
+    }
+    
+    func deleteAllMovies(){
+        
+        let moviesCount = getMoviesFromDB()
+        print("moviesCount \(moviesCount)")
+        
+        if(moviesCount > 0){
+            for i in 0...moviesCount-1 {
+                viewContext.delete(movieList[i])
+                
+                do {
+                    try viewContext.save()
+                } catch {
+                    print("Error deleting movie")
+                }
             }
-            
         }
         
     }
@@ -71,15 +140,17 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieList?.count ?? 0
+        return movieList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        cell.textLabel!.text = movieList?[indexPath.row].title
+        let title = movieList[indexPath.row].value(forKey: "title") as! String
+        cell.textLabel!.text = title
         
-        let url = URL(string: movieList?[indexPath.row].image ?? "")
+        let imageUrl = movieList[indexPath.row].value(forKey: "image") as! String
+        let url = URL(string: imageUrl)
         cell.imageView?.kf.setImage(with: url, placeholder: UIImage(named: "placeholder.jpg"), options: nil, completionHandler: nil)
         
         return cell
@@ -99,14 +170,21 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             
-            let db = obj.openDatabase()
+            print("deleting \(movieList[indexPath.row].value(forKey: "title"))")
             
-            obj.deleteMovieById(db: db!, id: (movieList?[indexPath.row].id) as! NSString)
-            print("\(movieList?[indexPath.row].title) was deleted!")
-            movieList?.remove(at: indexPath.row)
+            viewContext.delete(movieList[indexPath.row])
+            
+            do {
+                try viewContext.save()
+                movieList.remove(at: indexPath.row)
+            } catch {
+                print("Error deleting movie")
+            }
+            
             DispatchQueue.main.async {
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }
+            
         }
     }
     
@@ -131,12 +209,9 @@ class TableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        let movie: Movie = movieList![self.tableView.indexPathForSelectedRow!.row]
-        print("selected movie: \(movie.title)")
+        let movie = movieList[self.tableView.indexPathForSelectedRow!.row]
         let detailsVC = segue.destination as! DetailsViewController
         detailsVC.movie = movie
-        detailsVC.tableVCDelegate = self
     }
 
 }
